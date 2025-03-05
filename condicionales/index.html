@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../condicionales/">
+        <link rel="prev" href="../iteraciones/">
       
       
-        <link rel="next" href="../resto/">
+        <link rel="next" href="../diagrams/">
       
       
       <link rel="icon" href="../assets/favicon.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Diagrams - Thymeleaf - una guia sencilla</title>
+        <title>Condicionales - Thymeleaf - una guia sencilla</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#diagram-examples" class="md-skip">
+        <a href="#condicionales" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Diagrams
+              Condicionales
             
           </span>
         </div>
@@ -287,27 +287,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../condicionales/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Condicionales
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -317,14 +296,12 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    Diagrams
+    Condicionales
     
   </span>
   
@@ -336,7 +313,7 @@
         
   
   <span class="md-ellipsis">
-    Diagrams
+    Condicionales
     
   </span>
   
@@ -349,8 +326,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -359,18 +334,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flowcharts" class="md-nav__link">
+  <a href="#condicionales" class="md-nav__link">
     <span class="md-ellipsis">
-      Flowcharts
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sequence-diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sequence Diagrams
+      Condicionales
     </span>
   </a>
   
@@ -380,6 +346,27 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagrams
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -422,8 +409,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -432,18 +417,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flowcharts" class="md-nav__link">
+  <a href="#condicionales" class="md-nav__link">
     <span class="md-ellipsis">
-      Flowcharts
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sequence-diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sequence Diagrams
+      Condicionales
     </span>
   </a>
   
@@ -465,27 +441,93 @@
 
 
 
-<h1 id="diagram-examples">Diagram Examples</h1>
-<h2 id="flowcharts">Flowcharts</h2>
-<pre class="mermaid"><code>graph TD
-    A[Inicio] --&gt; B[Fin]</code></pre>
-<pre class="mermaid"><code>graph LR
-  A[Start] --&gt; B{Failure?};
-  B --&gt;|Yes| C[Investigate...];
-  C --&gt; D[Debug];
-  D --&gt; B;
-  B ----&gt;|No| E[Success!];</code></pre>
-<h2 id="sequence-diagrams">Sequence Diagrams</h2>
-<pre class="mermaid"><code>sequenceDiagram
-  autonumber
-  Server-&gt;&gt;Terminal: Send request
-  loop Health
-      Terminal-&gt;&gt;Terminal: Check for health
-  end
-  Note right of Terminal: System online
-  Terminal--&gt;&gt;Server: Everything is OK
-  Terminal-&gt;&gt;Database: Request customer data
-  Database--&gt;&gt;Terminal: Customer data</code></pre>
+  <h1>Condicionales</h1>
+
+<h2 id="condicionales">Condicionales</h2>
+<p>Thymeleaf proporciona varias formas de implementar lógica condicional en las plantillas HTML. Los condicionales son útiles para mostrar u ocultar elementos, aplicar estilos o modificar el contenido basado en ciertas condiciones. A continuación, te explico en detalle cómo utilizar condicionales en Thymeleaf, con ejemplos prácticos.</p>
+<ol>
+<li>Condicional <em><code>th:if</code></em></li>
+</ol>
+<p>El atributo <em><code>th:if</code></em> se utiliza para mostrar un elemento solo si se cumple una condición. Si la condición es false, el elemento no se renderiza en el HTML final.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">elemento</span> <span class="na">th:if</span><span class="o">=</span><span class="s">&quot;${condicion}&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="cm">&lt;!-- Contenido que se muestra si la condición es verdadera --&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="hll"><span class="p">&lt;/</span><span class="nt">elemento</span><span class="p">&gt;</span>
+</span></span></code></pre></div></td></tr></table></div>
+<details class="info" open="open">
+<summary><strong>Ejemplo 1</strong> - Mostrar un mensaje si un usuario es administrador</summary>
+<p>Supongamos que tienes un objeto usuario con una propiedad esAdmin.</p>
+<ol>
+<li>Crear el modelo de datos en la clase controladora
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// En el controlador</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&quot;usuario&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">));</span><span class="w"> </span><span class="c1">// true indica que es admin</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Crear la plantilla HTML con el atributo <em><code>th:if</code></em>
+Thymeleaf
+<div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cm">&lt;!-- En la plantilla --&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">th:if</span><span class="o">=</span><span class="s">&quot;${usuario.esAdmin}&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bienvenido, administrador.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div></li>
+</ol>
+</details>
+<details class="info" open="open">
+<summary><strong>Ejemplo 2:</strong> Mostrar una lista solo si no está vacía</summary>
+<ol>
+<li>Crear el modelo de datos en la clase controladora
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// En el controlador</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tareas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;Tarea 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tarea 2&quot;</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="hll"><span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&quot;tareas&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tareas</span><span class="p">);</span>
+</span></span></code></pre></div></td></tr></table></div></li>
+<li>Crear la plantilla HTML con el atributo <em><code>th:if</code></em></li>
+</ol>
+<p><div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="cm">&lt;!-- En la plantilla --&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">th:if</span><span class="o">=</span><span class="s">&quot;${not #lists.isEmpty(tareas)}&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll">    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Lista de tareas:<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</span></span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">th:each</span><span class="o">=</span><span class="s">&quot;tarea : ${tareas}&quot;</span> <span class="na">th:text</span><span class="o">=</span><span class="s">&quot;${tarea}&quot;</span><span class="p">&gt;</span>Tarea<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">th:if</span><span class="o">=</span><span class="s">&quot;${#lists.isEmpty(tareas)}&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>No hay tareas pendientes.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+Si la lista tareas no está vacía, se muestra la lista.</p>
+<p>Si está vacía, se muestra el mensaje "No hay tareas pendientes".</p>
+</details>
+<ol>
+<li>Condicional <em><code>th:switch</code></em> y <em><code>th:case</code></em></li>
+</ol>
+<p>Thymeleaf también admite estructuras de control más complejas, como <em><code>th:switch y th:case</code></em>, que son útiles cuando tienes múltiples condiciones.</p>
+<p>Sintaxis básica</p>
+<p><div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">th:switch</span><span class="o">=</span><span class="s">&quot;${variable}&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">th:case</span><span class="o">=</span><span class="s">&quot;valor1&quot;</span><span class="p">&gt;</span>Contenido para valor1<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">th:case</span><span class="o">=</span><span class="s">&quot;valor2&quot;</span><span class="p">&gt;</span>Contenido para valor2<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">th:case</span><span class="o">=</span><span class="s">&quot;*&quot;</span><span class="p">&gt;</span>Contenido por defecto<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+th:case="valor1": Se ejecuta si variable es igual a valor1.</p>
+<p>th:case="*": Es el caso por defecto, similar al default en un switch de Java.</p>
 
 
 
@@ -517,7 +559,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../condicionales/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Condicionales">
+          <a href="../iteraciones/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Iteraciones">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -527,20 +569,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Condicionales
+                Iteraciones
               </div>
             </div>
           </a>
         
         
           
-          <a href="../resto/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Resto">
+          <a href="../diagrams/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Diagrams">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Resto
+                Diagrams
               </div>
             </div>
             <div class="md-footer__button md-icon">
